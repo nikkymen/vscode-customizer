@@ -1,13 +1,8 @@
-# Custom CSS and JS
+# VS Code Customizer
 
-### **SPECIAL NOTE: If Visual Studio Code complains about that it is corrupted, simply click “Don't show again” or install [Fix VSCode Checksums Next](https://marketplace.visualstudio.com/items?itemName=RimuruChan.vscode-fix-checksums-next).**
-### **NOTE: Every time after Visual Studio Code is updated, please re-enable Custom CSS.**
-### **NOTE: Every time you change the configuration, please re-enable Custom CSS.**
-### **Starting from extension version 6.0, to be compatible with VSCode 1.58, the CSS/JS files being applied will be inlined into VSCode's workbench.**
+This is a fork of https://github.com/be5invis/vscode-custom-css.
 
-Custom CSS to your Visual Studio Code. Based on [robertohuertasm](https://github.com/robertohuertasm)’s [vscode-icons](https://github.com/robertohuertasm/vscode-icons).
-
-![screenshot](https://raw.githubusercontent.com/be5invis/vscode-custom-css/master/screenshot.png)
+The ability to hide unnecessary elements from the context menu of the editor is integrated here.
 
 ## Getting Started
 
@@ -16,10 +11,16 @@ Custom CSS to your Visual Studio Code. Based on [robertohuertasm](https://github
 2. Add to `settings.json`:
 
    ```json
-       "vscode_custom_css.imports": [""]
+       "vscode_customizer.imports": [""]
+       "vscode_customizer.editor_context_selectors": [
+			"Peek",
+			"^Switch",
+			"^Go to",
+			"Show AST"
+    	]
    ```
 
-   **VERY IMPORTANT**: Items in `vscode_custom_css.imports` must be **URL**s. Plain file paths are **NOT URLs**.
+   **VERY IMPORTANT**: Items in `vscode_customizer.imports` must be **URL**s. Plain file paths are **NOT URLs**.
 
    - **Windows File URL Example**: `file:///C:/Users/MyUserName/Documents/custom.css`
      - The `C:/` part is **REQUIRED.**
@@ -33,18 +34,21 @@ Custom CSS to your Visual Studio Code. Based on [robertohuertasm](https://github
 
    2. **MacOS and Linux**: See instructions below.
 
-4. Activate command "Reload Custom CSS and JS".
+4. Activate command "Reload VSCode Customizer".
 
 5. Restart.
 
+### **SPECIAL NOTE: If Visual Studio Code complains about that it is corrupted, simply click “Don't show again” or install [Fix VSCode Checksums Next](https://marketplace.visualstudio.com/items?itemName=RimuruChan.vscode-fix-checksums-next).**
+### **NOTE: Every time after Visual Studio Code is updated, please re-enable extension.**
+### **NOTE: Every time you change the configuration, please re-enable extension.**
 
 ## Extension commands
 
 As you know to access the command palette and introduce commands you can use ***F1*** (all OSes), ***Ctrl+Shift+P*** (Windows & Linux) or ***Cmd+Shift+P*** (OS X).
 
-- ***Enable Custom CSS and JS***: It enables custom CSS and JS URLs listed in “`vscode_custom_css.imports`”, an array containing URLs of your custom CSS and JS files, in your user settings.
-- ***Disable Custom CSS and JS***: It will disable custom CSS.
-- ***Reload Custom CSS and JS***: Disable and then re-enable it.
+- ***Enable VSCode Customizer***: It enables VSCode Customizer URLs listed in “`vscode_customizer.imports`”, an array containing URLs of your VSCode Customizer files, in your user settings.
+- ***Disable VSCode Customizer***: It will disable custom CSS.
+- ***Reload VSCode Customizer***: Disable and then re-enable it.
 
 ## Windows users
 
@@ -87,7 +91,7 @@ It also supports env variables like `${env:ENV_VAR_NAME}` and you can specify a 
 ### Example
 
 ```json
-"vscode_custom_css.imports": ["file://${userHome}/.config/vscode-styles.css"]
+"vscode_customizer.imports": ["file://${userHome}/.config/vscode-styles.css"]
 ```
 
 # Disclaimer

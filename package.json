@@ -1,13 +1,12 @@
 {
-	"name": "vscode-custom-css",
-	"displayName": "Custom CSS and JS Loader",
-	"description": "Custom CSS and JS for Visual Studio Code",
-	"version": "7.4.3",
-	"publisher": "be5invis",
+	"name": "vscode-customizer",
+	"displayName": "VS Code Customizer",
+	"description": "Custom context menu for Visual Studio Code",
+	"version": "1.0.0",
+	"publisher": "nikkymen",
 	"author": {
-		"email": "belleve@typeof.net",
-		"name": "Belleve Invis",
-		"url": "https://typeof.net"
+		"email": "nikkymen@gmail.com",
+		"name": "Nikita Kozhanov"
 	},
 	"engines": {
 		"vscode": "^1.93.0"
@@ -18,10 +17,10 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/be5invis/vscode-custom-css"
+		"url": "https://github.com/nikkymen/vscode-customizer"
 	},
 	"bugs": {
-		"url": "https://github.com/be5invis/vscode-custom-css/issues"
+		"url": "https://github.com/nikkymen/vscode-customizer/issues"
 	},
 	"preview": true,
 	"icon": "images/logo.png",
@@ -36,26 +35,31 @@
 		"commands": [
 			{
 				"command": "extension.installCustomCSS",
-				"title": "Enable Custom CSS and JS"
+				"title": "Enable VSCode Customizer"
 			},
 			{
 				"command": "extension.uninstallCustomCSS",
-				"title": "Disable Custom CSS and JS"
+				"title": "Disable VSCode Customizer"
 			},
 			{
 				"command": "extension.updateCustomCSS",
-				"title": "Reload Custom CSS and JS"
+				"title": "Reload VSCode Customizer"
 			}
 		],
 		"configuration": {
-			"title": "Custom CSS/JS Configuration",
+			"title": "VSCode Customizer Configuration",
 			"properties": {
-				"vscode_custom_css.imports": {
+				"vscode_customizer.imports": {
 					"description": "Custom CSS/JS files, as an array of URLs, not file paths",
 					"type": "array",
 					"default": []
 				},
-				"vscode_custom_css.statusbar": {
+				"vscode_customizer.editor_context_selectors": {
+					"description": "Selectors array for editor context menu exclusion",
+					"type": "array",
+					"default": []
+				},
+				"vscode_customizer.statusbar": {
 					"description": "Enable Status Indicator",
 					"type": "boolean",
 					"default": true

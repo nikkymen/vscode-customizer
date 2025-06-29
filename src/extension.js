@@ -6,6 +6,7 @@ const msg = require("./messages").messages;
 const uuid = require("uuid");
 const fetch = require("node-fetch");
 const Url = require("url");
+const { getEditorContextMenuJs } = require('./editor-context-menu.js');
 
 function activate(context) {
 	const appDir = require.main
@@ -160,10 +161,7 @@ function activate(context) {
 	// #### Patching ##############################################################
 
 	async function performPatch(uuidSession) {
-		const config = vscode.workspace.getConfiguration("vscode_custom_css");
-		if (!patchIsProperlyConfigured(config)) {
-			return vscode.window.showInformationMessage(msg.notConfigured);
-		}
+		let config = vscode.workspace.getConfiguration("vscode_customizer");
 
 		let html = await fs.promises.readFile(htmlFile, "utf-8");
 		html = clearExistingPatches(html);
@@ -174,11 +172,16 @@ function activate(context) {
 		let indicatorJS = "";
 		if (config.statusbar) indicatorJS = await getIndicatorJs();
 
+		let editorContextMenuJS = "";
+		if (config.editor_context_selectors)
+			editorContextMenuJS = getEditorContextMenuJs(config.editor_context_selectors);
+
 		html = html.replace(
 			/(<\/html>)/,
 			`<!-- !! VSCODE-CUSTOM-CSS-SESSION-ID ${uuidSession} !! -->\n` +
 				"<!-- !! VSCODE-CUSTOM-CSS-START !! -->\n" +
 				indicatorJS +
+				editorContextMenuJS +
 				injectHTML +
 				"<!-- !! VSCODE-CUSTOM-CSS-END !! -->\n</html>"
 		);
@@ -191,6 +194,7 @@ function activate(context) {
 		}
 		enabledRestart();
 	}
+
 	function clearExistingPatches(html) {
 		html = html.replace(
 			/<!-- !! VSCODE-CUSTOM-CSS-START !! -->[\s\S]*?<!-- !! VSCODE-CUSTOM-CSS-END !! -->\n*/,
@@ -246,6 +250,7 @@ function activate(context) {
 		const indicatorJsContent = await fs.promises.readFile(indicatorJsPath, "utf-8");
 		return `<script>${indicatorJsContent}</script>`;
 	}
+
 
 	function reloadWindow() {
 		// reload vscode-window
