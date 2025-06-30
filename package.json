@@ -62,7 +62,7 @@
 				"vscode_customizer.statusbar": {
 					"description": "Enable Status Indicator",
 					"type": "boolean",
-					"default": true
+					"default": false
 				}
 			}
 		}
