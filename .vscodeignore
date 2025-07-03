@@ -1,3 +1,7 @@
 .vscode/
 .github/
 .prettierrc.yaml
+.eslintrc.json
+package-lock.json
+node_modules/
+*.vsix
