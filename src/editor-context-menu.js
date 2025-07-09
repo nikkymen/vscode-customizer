@@ -59,12 +59,7 @@ function getEditorContextMenuJs(selectors) {
             const isEditorContextMenu = Array.from(container.querySelectorAll('.action-label'))
                 .some(el => {
                     const label = el.getAttribute('aria-label') || '';
-                    // These are common editor context menu items
-                    return label.includes('Cut') ||
-                        label.includes('Copy') ||
-                        label.includes('Paste') ||
-                        label.includes('Format Document') ||
-                        label.includes('Go to Definition');
+                    return label.includes('Format Document');
                 });
 
             if (!isEditorContextMenu) {
