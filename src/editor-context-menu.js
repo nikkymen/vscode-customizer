@@ -59,7 +59,7 @@ function getEditorContextMenuJs(selectors) {
             const isEditorContextMenu = Array.from(container.querySelectorAll('.action-label'))
                 .some(el => {
                     const label = el.getAttribute('aria-label') || '';
-                    return label.includes('Format Document');
+                    return label.includes('Change All Occurrences') ||;
                 });
 
             if (!isEditorContextMenu) {
